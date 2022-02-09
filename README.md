@@ -1,24 +1,36 @@
-# README
+# Rails API 연습
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- 본 프로젝트는 Ruby On Rails 를 사용한 API 연습 레포지토리입니다.
+- '당신을 위한 맞춤형 헬스 서포트 - 오빠 오늘 뭐해요'프로젝트의 백엔드 API를 만들어 본다고 생각합니다.
+- 진행에 필요한 API 내용은 아래에 정의되어 있습니다.
 
-Things you may want to cover:
+# 프로젝트 진행 목표
+- Rails 백엔드를 사용해 서비스 코드를 완성
+- 코드에 정성을 들여서 조금 더 깔끔한 코드를 짜는 것을 목표로 합니다.
+- API 서비스 구현에 가장 가까운 방식으로 코드를 짜는 것을 목표로 합니다.
 
-* Ruby version
+# 프로젝트 설명
+- '당신을 위한 맞춤형 헬스 서포트 - 오빠 오늘 뭐해요'
+- 최근 진행한 헬스 부위 또는 운동을 입력 받아서 오늘 진행하면 좋을 운동 부위를 산출
+  - 프로젝트에는 간단한 알고리즘만 구현하여 사용함
+  - 가슴, 팔, 어깨, 복근, 등, 하체 5가지 부분의 운동으로 구분하여 저장 후 **최근에 안해본 운동**으로 코스를 짜서 주는 것을 목표로 함
 
-* System dependencies
+# API 설명
 
-* Configuration
+## 전체 페이지
+### 입력값
+`/api/workouts`
+|이름|타입|설명|옵션|
+|:---:|:---:|:---:|:---:|
+|||||
+전체 운동 목록을 불러옵니다.
 
-* Database creation
+### 출력값
+|이름|타입|설명|옵션|
+|:---:|:---:|:---:|:---:|
+|||||
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### 오류 목록
+|이름|타입|설명|옵션|
+|:---:|:---:|:---:|:---:|
+|||||
