@@ -32,8 +32,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 gem 'jwt'
 
-# env variable
-gem 'figaro'
+# env variable - not use now
+# gem 'figaro'
 
 # use for importing csv files faster
 gem 'activerecord-import'
