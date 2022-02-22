@@ -10,11 +10,11 @@ class Api::AuthController < ApplicationController
 
   def sign_up
     @user = User.new(user_params)
-  
+
     if @user.save
       render json: @user # TODO: AMS serialize
     else
-      render json: { errors: ['Not Authenticated'] }, status: :unautorized # TODO: 에러 코드 맞는지 확인
+      render json: { errors: ['Not Authenticated'] }, status: :unauthorized # TODO: 에러 코드 맞는지 확인
     end
   end
 
@@ -25,7 +25,7 @@ class Api::AuthController < ApplicationController
     if user.valid_password?(user_params[:password])
       render json: payload(user)
     else
-      render json: { errors: ['Invalid Username/Password']}, status: :unautorized
+      render json: { errors: ['Invalid Username/Password']}, status: :unauthorized
     end
   end
 
@@ -38,6 +38,7 @@ class Api::AuthController < ApplicationController
   end
 
   def user_params
+    # TODO: parsing 과정에서 에러 발생 시 리턴값 지정
     json_params = ActionController::Parameters.new(JSON.parse(request.body.read)) # read user info
     json_params.require(:auth).permit(:email, :password, :password_confirmation)
   end

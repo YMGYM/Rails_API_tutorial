@@ -33,7 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       # t.datetime :locked_at
 
       # exercise level
-      t.references :tier, null: false, foreign_key: true
+      t.references :tier, null: false, foreign_key: true, default: 1
 
       t.timestamps null: false
     end
