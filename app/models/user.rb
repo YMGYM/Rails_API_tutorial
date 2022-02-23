@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :workouts
-  belongs_to :tier, class_name: "tier", foreign_key: "tier_id"
+  has_one :tier
 end
