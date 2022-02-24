@@ -10,7 +10,6 @@ class Api::AuthController < ApplicationController
 
   def sign_up
     @user = User.new(user_params)
-    debugger
     if @user.save
       render json: payload(@user)
     else
