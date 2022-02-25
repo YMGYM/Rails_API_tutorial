@@ -67,7 +67,7 @@
 프로젝트에서 구현된 API 의 상세 설명입니다.
 ## 사용자 로그인
 ### 입력값
-POST `/api/user/sign_in`
+POST `/api/auth/sign_in`
 |이름|타입|설명|옵션|
 |:---:|:---:|:---:|:---:|
 |email|string|사용자 고유 계정||
@@ -99,14 +99,14 @@ jwt 토큰이 반환됩니다.
 
 ## 사용자 회원가입
 ### 입력값
-POST `/api/user/sign_up`
+POST `/api/auth/sign_up`
 |이름|타입|설명|옵션|
 |:---:|:---:|:---:|:---:|
 |email|string|사용자 이메일||
 |password|string|사용자 비밀번호||
 |password_confirmation|string|사용자 비밀번호 확인||
 
-사용자 계정으로 로그인합니다.
+사용자 계정으로 회원가입합니다.
 
 ### 출력값
 |이름|타입|설명|옵션|

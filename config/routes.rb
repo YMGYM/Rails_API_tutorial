@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :auth, only: [] do
       collection do
         post :sign_up
+        post :sign_in
       end
     end
     post 'auth/test', to: 'auth#test', as: :auth_test
