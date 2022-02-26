@@ -25,6 +25,9 @@ class Api::AuthController < ApplicationController
     else
       render json: { errors: ['Invalid Username/Password']}, status: :unauthorized
     end
+
+  rescue JSON::ParserError, NoMethodError
+    render json: { errors: ['Bad Request'] }, status: :bad_request
   end
 
   private
@@ -37,8 +40,10 @@ class Api::AuthController < ApplicationController
   end
 
   def user_params
-    # TODO: parsing 과정에서 에러 발생 시 리턴값 지정
     json_params = ActionController::Parameters.new(JSON.parse(request.body.read)) # read user info
     json_params.require(:auth).permit(:email, :password, :password_confirmation)
+
+  rescue JSON::ParserError
+    render json: { errors: ['Bad Request'] }, status: :bad_request
   end
 end
