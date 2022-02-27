@@ -1,6 +1,6 @@
 class JsonWebToken
   def self.decode(token)
-    return HashWithIddifferentAccess.new(JWT.decode(token, ENV["SECRET_KEY_BASE"])[0]) # set in rails credentials
+    return HashWithIddifferentAccess.new(JWT.decode(token, ENV["secret_key_base"])[0]) # set in rails credentials
   rescue
     nil
   end
