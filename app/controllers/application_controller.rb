@@ -27,7 +27,6 @@ class ApplicationController < ActionController::Base
   end
 
   def user_id_in_token?
-    debugger
     http_token && auth_token && auth_token[:user_id].to_i
   end
 end
