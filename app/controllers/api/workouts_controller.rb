@@ -4,7 +4,7 @@ class Api::WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :update, :destroy]
 
   def index
-    @workouts = Workout.all
+    @workouts = current_user.workouts
     render json: @workouts, status: :ok
   end
 
@@ -14,7 +14,7 @@ class Api::WorkoutsController < ApplicationController
     if @workout.save
       render json: @workout
     else
-      render json: { errors: ['Bad request']}, status: :bad_request
+      render json: { errors: ['Cannot save entity']}, status: :unprocessable_entity
     end
   end
 
@@ -26,25 +26,29 @@ class Api::WorkoutsController < ApplicationController
     if @workout.update(workout_params)
       render json: @workout, status: :ok
     else
-      render json: { errors: ['Bad request']}, status: :bad_request
+      render json: { errors: ['Cannot update entity']}, status: :unprocessable_entity
     end
   end
 
   def destroy
+    @workout.destroy
+    head :no_content # convention of scaffold.. TODO: 이게 맞..나? 프론트 입장에서 이게 이해가 되나?
   end
 
   private
   def workout_params
     json_params = ActionController::Parameters.new(JSON.parse(request.body.read)) # read user info
-    json_params.require(:workout).permit(:user_id, :exercise_id, :work_time, :calorie_amount)
-
+    json_params.require(:workout).permit(:exercise_id, :work_time, :calorie_amount).merge(user_id: current_user.id)
   rescue JSON::ParserError
     render json: { errors: ['Bad Request'] }, status: :bad_request
   end
 
   def set_workout
-    @workout = Workout.find(params[:id]) # TODO: 레코드를 찾을 수 없을 때 400 에러 핸들링
-  # rescue RecordNotFound
-  #   render json: { errors: ['Bad Request'] }, status: :bad_request
+    @workout = Workout.find(params[:id])
+    if @workout.user != current_user # is record made by current_user?
+      render json: { errors: ["You don't have permission for this entity"] }, status: :forbidden
+    end
+  rescue ActiveRecord::RecordNotFound
+    render json: { errors: ['Record Not Found'] }, status: :unprocessable_entity
   end
 end

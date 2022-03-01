@@ -1,3 +1,6 @@
 class WorkoutSerializer < ActiveModel::Serializer
-  attributes :id, :exercise_id, :user_id, :work_time, :calorie_amount
+  attributes :id, :work_time, :calorie_amount
+
+  belongs_to :exercise
+  belongs_to :user
 end

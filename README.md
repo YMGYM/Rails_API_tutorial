@@ -214,7 +214,7 @@ GET `/api/recommend`
 POST `/api/workouts`
 |이름|타입|설명|옵션|
 |:---:|:---:|:---:|:---:|
-|user_id|integer|사용자 id||
+|user_id|integer|사용자 id|(서버가 입력)|
 |exercise_id|integer|운동 id||
 |work_time|integer|운동한 시간||
 |calorie_amount|integer|소모된 칼로리||
@@ -241,10 +241,12 @@ GET `/api/workouts`
 |:---:|:---:|:---:|:---:|
 |||||
 
+자신이 한 모든 운동 결과를 불러옵니다.
+
 ### 출력값
 |이름|타입|설명|옵션|
 |:---:|:---:|:---:|:---:|
-|workouts|array|운동의 목록||
+|workouts|array|`current_user`의 운동의 목록||
 
 `workouts` 는 다음과 같은 구조입니다.
 |이름|타입|설명|옵션|
