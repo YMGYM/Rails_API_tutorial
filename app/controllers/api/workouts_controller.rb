@@ -9,7 +9,7 @@ class Api::WorkoutsController < ApplicationController
   end
 
   def create
-    @workout = Workout.new(workout_params)
+    @workout = current_user.workouts.new(workout_params)
 
     if @workout.save
       render json: @workout
@@ -38,7 +38,7 @@ class Api::WorkoutsController < ApplicationController
   private
   def workout_params
     json_params = ActionController::Parameters.new(JSON.parse(request.body.read)) # read user info
-    json_params.require(:workout).permit(:exercise_id, :work_time, :calorie_amount).merge(user_id: current_user.id)
+    json_params.require(:workout).permit(:exercise_id, :work_time, :calorie_amount)
   rescue JSON::ParserError
     render json: { errors: ['Bad Request'] }, status: :bad_request
   end
