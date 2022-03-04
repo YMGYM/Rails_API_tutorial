@@ -45,7 +45,7 @@ class Api::WorkoutsController < ApplicationController
 
   def set_workout
     @workout = Workout.find(params[:id])
-    if @workout.user != current_user # is record made by current_user?
+    if @workout.u;ser != current_user # is record made by current_user?
       render json: { errors: ["You don't have permission for this entity"] }, status: :forbidden
     end
   rescue ActiveRecord::RecordNotFound
