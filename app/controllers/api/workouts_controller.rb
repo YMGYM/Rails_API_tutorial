@@ -1,5 +1,4 @@
 class Api::WorkoutsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:index, :create, :show, :update, :destroy]
   before_action :jwt_authenticate_request!, only: [:index, :create, :show, :update, :destroy]
   before_action :set_workout, only: [:show, :update, :destroy]
 
@@ -45,7 +44,7 @@ class Api::WorkoutsController < ApplicationController
 
   def set_workout
     @workout = Workout.find(params[:id])
-    if @workout.u;ser != current_user # is record made by current_user?
+    if @workout.user != current_user # is record made by current_user?
       render json: { errors: ["You don't have permission for this entity"] }, status: :forbidden
     end
   rescue ActiveRecord::RecordNotFound
