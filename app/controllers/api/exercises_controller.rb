@@ -8,6 +8,7 @@ class Api::ExercisesController < ApplicationController
   end
 
   def show
+    render json: @exercise, status: :ok
   end
 
   private
