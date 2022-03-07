@@ -1,3 +1,5 @@
 class ExerciseSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :title, :part, :content
+
+  belongs_to :tier
 end

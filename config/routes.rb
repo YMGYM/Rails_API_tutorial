@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :workouts, only: [:index, :show, :create, :update, :destroy]
     resources :recommends, only: [:index]
+    resources :exercises, only: [:index, :show]
     resources :auth, only: [] do
       collection do
         post :sign_up

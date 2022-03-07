@@ -3,7 +3,7 @@ class Api::ExercisesController < ApplicationController
   before_action :set_exercise, only: [:show]
 
   def index
-    @exercises = Exercises.all # TODO: filter 기능?
+    @exercises = Exercise.all # TODO: filter 기능?
     render json: @exercises, status: :ok
   end
 
